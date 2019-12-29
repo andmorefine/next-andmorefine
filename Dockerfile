@@ -1,4 +1,5 @@
 FROM node:10
+RUN apk add nodejs --update --no-cache
 # Setting working directory. All the path will be relative to WORKDIR
 WORKDIR /usr/src/app
 # Installing dependencies

@@ -1,27 +1,21 @@
 version: 0.2
 
-env:
-  variables:
-    NODE_ENV: "production"
-
 phases:
-  install:
+  pre_build:
     commands:
-      - echo Installing dependency...
-      - npm install -g next
-      - npm install -g typescript
-      - npm install
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - REPOSITORY_REPO=andmorefine/next-origin
+      - REPOSITORY_URI=316224805545.dkr.ecr.ap-northeast-1.amazonaws.com
+      - IMAGE_TAG=latest
   build:
     commands:
       - echo Build started on `date`
-      - echo Compiling the Node.js code
-      - npm run build
-artifacts:
-  files:
-    - .next/**/*
-    - locales/**/*
-    - static/**/*
-    - package.json
-    - next.config.js
-    - tsconfig.json
-    - tsconfig.server.json
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_REPO:$IMAGE_TAG .
+      - docker tag $REPOSITORY_REPO:$IMAGE_TAG $REPOSITORY_URI/$REPOSITORY_REPO:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI/$REPOSITORY_REPO:$IMAGE_TAG
