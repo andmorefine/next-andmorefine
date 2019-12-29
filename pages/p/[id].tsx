@@ -1,25 +1,29 @@
 import Layout from '../../components/MyLayout'
 import { css } from 'glamor';
 
-let box = css({
+let imageStyle = css({
   color: 'red',
   width: '100%'
 })
 
 const Post = props => (
   <Layout>
-    <h1>{props.show.name}</h1>
-    <p>{props.show.summary}</p>
-    <img src={props.show.image.original} {...box} />
+    <h1>{props.name}</h1>
+    <div dangerouslySetInnerHTML={{__html: props.summary}} />
+    <img src={props.image} {...imageStyle} />
   </Layout>
 )
 
 Post.getInitialProps = async function ({ query }) {
-  const res = await fetch(`http://api.tvmaze.com/shows/${query.id}`)
+  const res = await fetch(`https://api.tvmaze.com/shows/${query.id}`)
   const data = await res.json()
 
+  const result_image = data.image.original.replace(/http/g, 'https');;
+
   return {
-    show: data
+    name: data.name,
+    summary: data.summary,
+    image: result_image,
   }
 }
 
