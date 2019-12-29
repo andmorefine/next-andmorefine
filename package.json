@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",
     "build": "next build",
-    "start": "next start -p 80"
+    "start": "next start"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,10 @@
     "next": "^9.1.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.1",
+    "@types/react": "^16.9.17",
+    "typescript": "^3.7.4"
   }
 }
