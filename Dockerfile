@@ -1,6 +1,6 @@
 FROM node:10
 # Setting working directory. All the path will be relative to WORKDIR
-WORKDIR /usr/src/app
+WORKDIR /codebuild/output/src311040613/src
 # Installing dependencies
 COPY buildspec.yml ./
 COPY package*.json ./
