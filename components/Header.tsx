@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <div>
       <Link href="/">
-        <a style={linkStyle}>Home</a>
+        <a style={linkStyle}>Batman</a>
       </Link>
       <Link href="/about">
         <a style={linkStyle}>About</a>

@@ -6,9 +6,13 @@ let imageStyle = css({
   width: '100%'
 })
 
+let h1style = css({
+  'text-align': 'center',
+})
+
 const Post = props => (
   <Layout>
-    <h1>{props.name}</h1>
+    <h1 {...h1style}>{props.name}</h1>
     <div dangerouslySetInnerHTML={{__html: props.summary}} />
     <img src={props.image} {...imageStyle} />
   </Layout>

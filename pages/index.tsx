@@ -1,14 +1,19 @@
 import Layout from '../components/MyLayout'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
+import { css } from 'glamor';
+
+let imageStyle = css({
+  'text-align': 'left',
+})
 
 const Index = props => (
   <Layout>
     <h1>Batman TV Shows</h1>
-    <ul>
+    <ul {...imageStyle}>
       {props.shows.map(show => (
         <li key={show.id}>
-          <Link href="/p/[id]" as={`/p/${show.id}`}>
+          <Link href="/content/[id]" as={`/content/${show.id}`}>
             <a>{show.name}</a>
           </Link>
         </li>
